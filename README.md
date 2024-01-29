@@ -18,7 +18,6 @@
 * 思い出として残したい、共有したい写真やコメントの投稿
 * 悩み事や疑問に思う事があった時
 * 猫に関する情報を共有したい時
-* 
 
 ## 設計書
 後ほど作成予定
@@ -32,3 +31,6 @@
 
 
 ##　使用素材
+
+## 実装機能リストURL
+https://docs.google.com/spreadsheets/d/1YunmVU4wv8p5zzbs_PliGADdxcBFVGhwDyHJFAybbxU/edit?usp=sharing
