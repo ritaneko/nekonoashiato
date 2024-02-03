@@ -1,0 +1,11 @@
+<% @photos.each do |photo| %>
+ <div>
+   <%= link_to photo_path(photo.id) do %>
+    <%= image_tag photo.get_image %>
+   <% end %>
+   <p>投稿ユーザー画像:<%= image_tag 'default-image.jpg' %></p>
+   <p>タイトル:<%= photo.title %></p>
+   <p>コメント:<%= photo.body %></p>
+   <p>ユーザーネーム:<%= photo.user.name %></p>
+ </div>
+<% end %>
