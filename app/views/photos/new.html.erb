@@ -1,6 +1,15 @@
 <h1>フォト投稿</h1>
-<%= form_with model: @photo do |f| %>
 
+<% if @photo.errors.any? %>
+  <%= @photo.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @photo.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @photo do |f| %>
  <h4>タイトル</h4>
  <%= f.text_field :title %>
  <h4>画像</h4>

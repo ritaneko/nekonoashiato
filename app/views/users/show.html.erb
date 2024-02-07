@@ -1,3 +1,16 @@
+<% @photos.each do |photo| %>
+  <div>
+    <%= link_to photo_path(photo.id) do %>
+      <%= image_tag photo.get_image %>
+    <% end %>
+    <p>投稿ユーザー画像: <%= image_tag photo.user.get_profile_image(100,100) %></p>
+    <p>タイトル: <%= photo.title %></p>
+    <p>コメント: <%= photo.body %></p>
+    <p>ユーザーネーム: <%= photo.user.name %></p>
+    <p><%= link_to "#{photo.photo_comments.count} コメント", photo_path(photo.id) %></p>
+  </div>
+<% end %>
+
 <div>
   <h3><%= @user.name %></h3>
   <%= image_tag @user.get_profile_image(100,100) %>
@@ -5,16 +18,3 @@
   <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
   <% end %>
 </div>
-
-<% @photos.each do |photo| %>
-<div>
-  <%= link_to photo_path(photo.id) do %>
-   <%= image_tag photo.get_image %>
-  <% end %>
-  <p>ユーザーアイコン:<%= image_tag photo.user.get_profile_image(100,100) %></p>
-  <p>タイトル:<%= photo.title %></p>
-  <p>コメント:<%= photo.body %></p>
-  <p>ユーザーネーム:<%= photo.user.name %></p>
-  <p><%= link_to"#{photo.photo_comments.count} コメント", photo_path(photo.id) %></p>
-</div>
-<% end %>

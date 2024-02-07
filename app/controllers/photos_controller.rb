@@ -8,11 +8,11 @@ class PhotosController < ApplicationController
     @photo = Photo.new(photo_params)
     @photo.user_id = current_user.id
     @photo.save
-    redirect_to photos_path
+     redirect_to photos_path
   end
 
   def index
-    @photos = Photo.all
+    @photos = Photo.page(params[:page])
   end
 
   def show
