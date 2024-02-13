@@ -8,6 +8,10 @@
   <% if @photo.user == current_user %>
    <%= link_to "削除", photo_path(@photo), method: :delete %>
   <% end %>
+  <% @photo_tags.each do |tag| %>
+  <%=tag.tag_name%><%="(#{tag.photos.count})" %>
+  <% end %>
+  
   <% if @photo.favorited_by?(current_user) %>
    <p>
      <%= link_to photo_favorite_path(@photo), method: :delete do %>

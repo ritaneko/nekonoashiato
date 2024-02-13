@@ -3,7 +3,8 @@ class Photo < ApplicationRecord
   belongs_to :user
   has_many :photo_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  
+  has_many :photo_tags, dependent: :destroy
+  has_many :tags, through: :photo_tags
   
   validates :title, presence: true
   validates :image, presence: true
@@ -19,4 +20,20 @@ class Photo < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+  
+ def save_tag(tags)
+    current_tags = self.tags.pluck(:tag_name)
+    old_tags = current_tags - tags
+    new_tags = tags - current_tags
+
+    old_tags.each do |old_name|
+      tag = Tag.find_by(tag_name: old_name)
+      self.tags.delete(tag) if tag
+    end
+
+    new_tags.each do |new_name|
+      photo_tag = Tag.find_or_create_by(tag_name: new_name)
+      self.tags << photo_tag
+    end
+ end
 end
