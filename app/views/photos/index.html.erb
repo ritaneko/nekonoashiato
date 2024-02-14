@@ -1,3 +1,4 @@
+
 <% @photos.each do |photo| %>
   <div>
     <%= link_to photo_path(photo.id) do %>
@@ -8,14 +9,16 @@
     <p>コメント: <%= photo.body %></p>
     <p>ユーザーネーム: <%= photo.user.name %></p>
     <p><%= link_to "#{photo.photo_comments.count} コメント", photo_path(photo.id) %></p>
-    <% @photo.each do |photo| %>
-    <%= photo.tag_name %>
-    <%= "(#{photo.photos.count})" %>
-    <% end %>
-     <% photos.each do |tag| %>
-      <%= tag.tag_name($:name).join(',' %>
+    
+    <h3>タグリスト</h3>
+     <% @tag_list.each do |list| %>
+     #<%= link_to list.tag_name, photos_path(tag_id: list.id) %>
+     <%= "(#{list.photos.count})" %>
      <% end %>
-    <% end %>
+
+  <% @photos.each do |photo| %> 
+    #<%= link_to tag.tag_name, photos_path(tag_id: tag.id) %>
+  <% end %>
   </div>
 <% end %>
 

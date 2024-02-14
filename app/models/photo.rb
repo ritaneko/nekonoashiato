@@ -21,19 +21,18 @@ class Photo < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
   
- def save_tag(tags)
-    current_tags = self.tags.pluck(:tag_name)
-    old_tags = current_tags - tags
-    new_tags = tags - current_tags
+  def save_tag(senttags)
+     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
+     old_tags = current_tags - tags
+     new_tags = tags - current_tags
 
-    old_tags.each do |old_name|
-      tag = Tag.find_by(tag_name: old_name)
-      self.tags.delete(tag) if tag
-    end
+     old_tags.each do |old_name|
+      self.tags.delete Tag.find_by(tag_name:old_name)
+     end
 
-    new_tags.each do |new_name|
-      photo_tag = Tag.find_or_create_by(tag_name: new_name)
+     new_tags.each do |new_name|
+      photo_tag = Tag.find_or_create_by(tag_name:new_name)
       self.tags << photo_tag
-    end
- end
+     end
+  end
 end

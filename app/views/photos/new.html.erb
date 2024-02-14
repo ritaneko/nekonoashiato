@@ -18,7 +18,7 @@
  <%= f.text_area :body %>
  <div>
  <%= f.label 'タグ' %>
- <%= f.text_field :tag_name,value: @tag_list %>
+ <%= f.text_field :tag_name,placeholder: "," %>
 </div>
  <%= f.submit '投稿' %>
 <% end %>

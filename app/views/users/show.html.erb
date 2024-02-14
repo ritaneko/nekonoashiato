@@ -1,4 +1,20 @@
-<% @photos.each do |photo| %>
+ <h3>タグを検索</h3>
+     <%= form_tag({controller:"users",action:"show"}, method: :get) do %>
+     <%= text_field_tag :search %>
+     <%= submit_tag '検索する'  %>
+     <% end %>
+ <br>
+
+　<div>
+    <h3><%= @user.name %></h3>
+    <%= image_tag @user.get_profile_image(100,100) %>
+    <% if @user == current_user %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+    <% end %>
+  </div>
+  
+　<% @photos.each do |photo| %>
+  
   <div>
     <%= link_to photo_path(photo.id) do %>
       <%= image_tag photo.get_image %>
@@ -8,13 +24,7 @@
     <p>コメント: <%= photo.body %></p>
     <p>ユーザーネーム: <%= photo.user.name %></p>
     <p><%= link_to "#{photo.photo_comments.count} コメント", photo_path(photo.id) %></p>
+    <p>タグ:  #<%= link_to tag.tag_name, photos_path(tag_id: tag.id) %></p>
   </div>
-<% end %>
+　<% end %>
 
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <% if @user == current_user %>
-  <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-  <% end %>
-</div>

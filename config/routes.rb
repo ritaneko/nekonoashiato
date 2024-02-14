@@ -15,6 +15,9 @@ resources :photos, only: [:new, :create, :index, :show, :destroy] do
   resource :favorite, only: [:create, :destroy]
   resources :photo_comments, only: [:create, :destroy]
 end
+resources :tags do
+  get 'photos', to: 'photos#search'
+end
 resources :users, only: [:show, :edit, :update]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
