@@ -18,7 +18,7 @@ class PhotosController < ApplicationController
   end
 
   def index
-    @photos = Photo.all
+    @photos = Photo.page(params[:page])
     @tag_list = Tag.all
   end
 

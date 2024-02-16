@@ -12,19 +12,30 @@
     <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
     <% end %>
   </div>
-  
-　<% @photos.each do |photo| %>
-  
-  <div>
+  <div class="card-list-container py-5">
+<% @photos.each do |photo| %>
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
     <%= link_to photo_path(photo.id) do %>
-      <%= image_tag photo.get_image %>
+      <%= image_tag photo.get_image, class: "card-img-top"; %>
     <% end %>
-    <p>投稿ユーザー画像: <%= image_tag photo.user.get_profile_image(100,100) %></p>
-    <p>タイトル: <%= photo.title %></p>
-    <p>コメント: <%= photo.body %></p>
-    <p>ユーザーネーム: <%= photo.user.name %></p>
-    <p><%= link_to "#{photo.photo_comments.count} コメント", photo_path(photo.id) %></p>
-    <p>タグ:  #<%= link_to tag.tag_name, photos_path(tag_id: tag.id) %></p>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-2">
+          <%= image_tag photo.user.get_profile_image(100,100), class: "mt-3 rounded-circle"; %>
+        </div>
+        <div class="col-10">
+          <p class="card-title">
+            <%= link_to(photo_path(photo.id), class: "text-dark") do %>
+              <strong><i class="fa-solid fa-paw-simple"></i><span> <%= photo.title %></span></strong>
+            <% end %>
+          </p>
+          <p class="card-text">一言：<%= photo.body %></p>
+          <span><i class="fas fa-user"></i> by <%= photo.user.name %> ｜ </span>
+          <span><%= link_to "#{photo.photo_comments.count} コメント", photo_path(photo.id), class: "text-dark" %></span>
+          <p>タグ:  #<%= link_to tag.tag_name, photos_path(tag_id: tag.id) %></p>
+        </div>
+      </div>
+    </div>
   </div>
-　<% end %>
-
+  <% end %>
+  <%= paginate @photos %>
