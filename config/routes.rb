@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 devise_for :users
 root to: "homes#top"
+post 'home/guest_sign_in', to: 'homes#guest_sign_in'
 get "home/about" => "homes#about", as: "about"
 
 devise_for :admin, skip: [:registrations, :password], controllers: {
