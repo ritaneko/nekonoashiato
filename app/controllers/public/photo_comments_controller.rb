@@ -1,4 +1,4 @@
-class PhotoCommentsController < ApplicationController
+class Public::PhotoCommentsController < ApplicationController
   def create
     photo = Photo.find(params[:photo_id])
     comment = current_user.photo_comments.new(photo_comment_params)

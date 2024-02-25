@@ -12,13 +12,13 @@
         <div class="col-10">
           <p class="card-title">
             <%= link_to(photo_path(photo.id), class: "text-dark") do %>
-              <strong><i class="fa-solid fa-paw-simple"></i><span> <%= photo.title %></span></strong>
+              <strong><i class="fa-solid fa-paw-simple"></i><span><%= photo.title %></span></strong>
             <% end %>
           </p>
           <p class="card-text">一言：<%= photo.body %></p>
           <span><i class="fas fa-user"></i> by <%= photo.user.name %> ｜ </span>
           <span><%= link_to "#{photo.photo_comments.count} コメント", photo_path(photo.id), class: "text-dark" %></span>
-          <p>タグ:  #<%= link_to tag.tag_name, photos_path(tag_id: tag.id) %></p>
+          <p>タグ:#<%= link_to tag.tag_name, photos_path(tag_id: tag.id) %></p>
         </div>
       </div>
     </div>

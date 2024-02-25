@@ -1,4 +1,4 @@
-class PhotosController < ApplicationController
+class Public::PhotosController < ApplicationController
   
   def new
     @photo = Photo.new

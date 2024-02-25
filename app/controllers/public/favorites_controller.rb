@@ -1,4 +1,4 @@
-class FavoritesController < ApplicationController
+class Public::FavoritesController < ApplicationController
   
   def create
     photo = Photo.find(params[:photo_id])

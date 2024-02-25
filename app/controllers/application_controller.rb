@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, except: [:top]
+  before_action :configure_authentication
   
   private
   
@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
   end
   
   def admin_controller?
-    self.class.module_parent_name == 'admin'
+    self.class.module_parent_name == 'Admin'
+  end
+  
+  def action_is_public?
+    controller_name == 'homes' && action_name == 'top'
   end
 end
