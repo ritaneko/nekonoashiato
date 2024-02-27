@@ -13,6 +13,12 @@ class Public::UsersController < ApplicationController
     @user.update(user_params)
     redirect_to user_path(@user.id)
   end
+  
+  def liked_photos
+  @liked_photos = Photo.liked_photos(current_user, params[:page], 12)
+  end
+
+
 
   private
 

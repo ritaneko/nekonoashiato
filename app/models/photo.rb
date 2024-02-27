@@ -21,6 +21,14 @@ class Photo < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
   
+  def self.liked_photos(user, page, per_page)
+    includes(:favorites)
+    .where(favorites: { user_id: user.id })
+    .order(created_at: :desc)
+    .page(page)
+    .per(per_page)
+  end
+  
   def save_tag(senttags)
      current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
      old_tags = current_tags - tags

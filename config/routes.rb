@@ -12,6 +12,7 @@ scope module: :public do
   get 'photos', to: 'photos#search'
   end
   resources :users, only: [:show, :edit, :update]
+  get :liked_photos
 end
 
 

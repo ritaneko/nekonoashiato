@@ -4,6 +4,12 @@
      <%= submit_tag '検索する'  %>
      <% end %>
  <br>
+ 
+ <li>
+   <%= link_to liked_photos_path(current_user), data: { "turbolinks" => false } do %>
+   <i class="fas fa-thumbs-up"></i>いいねした投稿
+   <% end %>
+ </li>
 
 　<div>
     <h3><%= @user.name %></h3>
