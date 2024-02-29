@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :photo_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :boards, dependent: :destroy
+  has_many :posts, dependent: :destroy
 
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -22,5 +23,9 @@ class User < ApplicationRecord
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
     end
+  end
+  
+  def own?(object)
+    object.user_id == id
   end
 end
