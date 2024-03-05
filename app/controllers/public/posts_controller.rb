@@ -11,7 +11,7 @@ class Public::PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:body).merge(board_id: params[:board_id])
+    params_require(:post).permit(:body).merge(board_id: params[:board_id])
   end
       
 end

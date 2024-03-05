@@ -1,12 +1,12 @@
 <ul class='crud_menu-btn list-inline float-right'>
     <li class="list-inline-item">
       <%= link_to edit_board_path(board), id: "button-edit-#{board.id}" do %>
-        <%= fa_icon "pen" %>
+        <i class="fa-solid fa-pen"></i>
       <% end %>
     </li>
     <li class="list-inline-item">
       <%= link_to board_path(board), id: "button-delete-#{board.id}", method: :delete, data: {confirm: t('defaults.message.delete_confirm')} do %>
-        <%= fa_icon "trash" %>
+       <i class="fa-solid fa-trash"></i>
       <% end %>
     </li>
 </ul>

@@ -1,10 +1,27 @@
-<div class="card-body">
-  <h4 class="card-title">
-    <%= link_to board.title, boards_path(board) %>
-  </h4>
-  <%= render 'crud_menus', board: board if current_user.own?(board) %>
-  <ul class="list-inline">
-    <li class="list-inline">
-    </li>
-  </ul>
+<div class="col-sm-12 col-lg-4 mb-3">
+  <div id="board-id-<%= board.id %>">
+   <div class="card-body">
+    <h4 class="card-title">
+      <a href="#">
+        <%= link_to board.title, boards_path(board) %>
+      </a>
+    </h4>
+    <div class='mr10 float-right'>
+      <a href="#"><i class="fa-solid fa-trash"></i></a>
+      <a href="#"><i class="fa-solid fa-pen"></i></a>
+    </div>
+    <ul class="list-inline">
+      <li class="list-inline-item">
+        <i class="fa-solid fa-user"></i>
+        <%= board.user_id %>
+      </li>
+      <li>
+        <i class="fa-solid fa-calendar-days"></i>
+        <%= l board.created_at, format: :long %>
+      </li>
+     </ul>
+     <p class="card-text"><%= board.body %></p>
+   </div>
+  </div>
 </div>
+<%= render 'crud_menus', board: board if current_user.own?(board) %>

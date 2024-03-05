@@ -3,7 +3,7 @@
     <%= form_with model: post, url: [board, post], local: true do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <%= f.label :body %>
-      <%= f.text_area :body, class: 'form-control mb-3', row: 4, placeholder: Post.human_attribute_name(:body) %>
+      <%= f.text_area :body, class: 'form-control mb-3', row: 4, placeholder: Post(:body) %>
       <%= f.submit t('defaults.photo'), class: 'btn btn-primary' %>
     <% end %>
   </div>
