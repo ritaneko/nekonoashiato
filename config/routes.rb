@@ -6,19 +6,18 @@ scope module: :public do
   devise_scope :user do
    post 'users/guest_sign_in', to: 'sessions#guest_sign_in'
   end
-
   resources :photos, only: [:new, :create, :index, :show, :destroy] do
    resource :favorites, only: [:create, :destroy]
    resources :photo_comments, only: [:create, :destroy]
   end
   resources :tags do
-  get 'photos', to: 'photos#search'
+   get 'photos', to: 'photos#search'
   end
+  get 'liked_photos'
   resources :users, only: [:show, :edit, :update]
   resources :boards do
       resources :posts, only: [:create]
   end
-  get :liked_photos
 end
 
 devise_for :admin, skip: [:registrations, :password], controllers: {

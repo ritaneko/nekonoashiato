@@ -1,6 +1,6 @@
 <h3>タグリスト</h3>
 <% @tag_list.each do |list| %>
-  <%= list.tag_name %>
+  <%= link_to list.tag_name, tag_photos_path(tag_id: list.id) %>
   <%= "(#{list.photos.count})" %>
 <% end %>
 <br>

@@ -12,7 +12,6 @@ class Public::PhotosController < ApplicationController
        @photo.save_tag(tag_list)
        redirect_to photos_path
     else
-      flash.now[:alert] = '投稿に失敗しました'
       render :new
     end
   end
@@ -36,7 +35,7 @@ class Public::PhotosController < ApplicationController
   
   def edit
     @photo = Photo.find(params[:id])
-    @tag_list = @photo.tags.pluck(:tag_name).join(nil)
+    @tags = @photo.tags.pluck(:name).join(',')
   end
   
   def search
@@ -46,30 +45,25 @@ class Public::PhotosController < ApplicationController
   end
   
   def update
-    photo = Photo.find(params[:id])
-    tag_list = params[:photo][:tag_name].split(nil)
-    if photo.update(photo_params)
-       old_relations = PhotoTag.where(photo_id: @photo.id)
-        old_relations.each do |relation|
-        relation.delete
-        end
-        
-       photo.save_tag(tag_list)
-       redirect_to photo_path(@photo.id),notice: '投稿完了'
+    @photo = Photo.find(params[:id])
+    tags = params[:photo][:tag_id].split(',')
+    if @photo.update(photo_params)
+      @photo.update_tags(tags)
+       redirect_to photo_path(@photo.id),notice:'投稿完了'
     else
-        redirect_to photos_path, notice: '下書きに登録しました'
+        render :edit
     end
   end
     
   def destroy
-    @photo = Photo.find(params[:id])
-    @photo.destroy
+    photo = Photo.find(params[:id])
+    photo.destroy
     redirect_to photos_path
   end
   
   private
   
   def photo_params
-    params.require(:photo).permit(:title, :image, :body, :tag_name)
+    params.require(:photo).permit(:user, :title, :image, :body, :tag_name)
   end
 end
