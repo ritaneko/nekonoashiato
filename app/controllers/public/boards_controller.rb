@@ -36,6 +36,7 @@ class Public::BoardsController < ApplicationController
  end
  
  def destroy
+  @board = Board.find(params[:id])
   @board.destroy!
   redirect_to boards_path, success: t('defaults.message.deleted')
  end

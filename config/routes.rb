@@ -13,8 +13,11 @@ scope module: :public do
   resources :tags do
    get 'photos', to: 'photos#search'
   end
-  get 'liked_photos'
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+      member do
+        get :liked_photos
+      end
+  end
   resources :boards do
       resources :posts, only: [:create]
   end

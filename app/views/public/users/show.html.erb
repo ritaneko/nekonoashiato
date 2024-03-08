@@ -6,7 +6,7 @@
  <br>
  
  <li>
-   <%= link_to liked_photos_path(current_user), data: { "turbolinks" => false } do %>
+   <%= link_to liked_photos_user_path(current_user), data: { "turbolinks" => false } do %>
    <i class="fas fa-thumbs-up"></i>いいねした投稿
    <% end %>
  </li>
