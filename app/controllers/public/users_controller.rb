@@ -15,7 +15,7 @@ class Public::UsersController < ApplicationController
   end
   
   def liked_photos
-    @liked_photos = Photo.liked_photos(current_user, params[:page],12)
+    @liked_photos = Photo.liked_photos(current_user, params[:page], 12)
   end
   
   private

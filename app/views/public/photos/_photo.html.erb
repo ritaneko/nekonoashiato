@@ -1,5 +1,5 @@
-<%= link_to image_tag(photo.image.variant(resize: '100x100')), photo_path(photo.id) %>
+<%= link_to image_tag( photo.image.variant(resize: '100x100') ), photo_path(photo.id) %>
 <%= link_to photo.user.name, user_path(photo.user.id) %>
 <i class="fa fa-heart unlike-btn"></i>
-<%= photo.liked_photos.length %>
+<%= photo.favorites.length %>
 <%= link_to photo.title, photo_path(photo.id) %>
