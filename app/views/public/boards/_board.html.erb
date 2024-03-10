@@ -3,20 +3,19 @@
    <div class="card-body">
     <h4 class="card-title">
       <a href="#">
-        <%= link_to board.title, boards_path(board) %>
+        <%= board.title %>
       </a>
     </h4>
-    <%= render 'crud_menus', board: board %>
     <div class='mr10 float-right'>
-      <a href="#"><i class="fa-solid fa-trash"></i></a>
-      <a href="#"><i class="fa-solid fa-pen"></i></a>
+      <i class="fa-solid fa-pen"></i>
+      <i class="fa-solid fa-trash"></i>
     </div>
     <ul class="list-inline">
       <li class="list-inline-item">
         <i class="fa-solid fa-user"></i>
         <%= board.user_id %>
       </li>
-      <li>
+      <li class="list-inline-item">
         <i class="fa-solid fa-calendar-days"></i>
         <%= l board.created_at, format: :long %>
       </li>
@@ -25,4 +24,5 @@
    </div>
   </div>
 </div>
+
 <%= render 'crud_menus', board: board if current_user.own?(board) %>

@@ -22,7 +22,7 @@
     </div>
   </div>
   
-  <%= render 'crud_menus', board: board if current_user.own?(board) %>
+  <%= render 'crud_menus', board: @board if current_user.own?(@board) %>
   
   <%= render 'posts/form', { board: @board, post: @post } %>
   

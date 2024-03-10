@@ -28,26 +28,24 @@ class Public::BoardsController < ApplicationController
  
  def update
   if @board.update(board_params)
-   redirect_to @board, success: t('defaults.message.updated')
+   redirect_to @board
   else
-   flash.now[:danger] = t('defaults.message.not_updated')
    render :edit
   end
  end
  
  def destroy
-  @board = Board.find(params[:id])
   @board.destroy!
-  redirect_to boards_path, success: t('defaults.message.deleted')
+  redirect_to boards_path
  end
  
  private
  
- def set_board
-  @board = current_user.boards.find(params[:id])
- end
- 
  def board_params
    params.require(:board).permit(:title, :body)
+ end
+ 
+ def set_board
+  @board = current_user.boards.find(params[:id])
  end
 end
