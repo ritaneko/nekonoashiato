@@ -1,20 +1,16 @@
-<div>
-  <%= image_tag @photo.get_image %>
-  <p>タイトル:<%= @photo.title %></p>
-  <p>コメント:<%= @photo.body %></p>
-  <p>投稿ユーザー画像:<%= image_tag @photo.user.get_profile_image(100,100) %></p>
-  <p>ユーザーネーム:<%= @photo.user.name %></p>
-  <p>投稿日:<%= @photo.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @photo.user == current_user %>
-   <%= link_to "削除", photo_path(@photo), method: :delete %>
-  <% end %>
-  
-  <% @photo_tags.each do |tag| %>
-   <% if tag.photos.count > 0 %>
-    #<%= link_to tag.tag_name, tag_photos_path(tag_id: tag.id) %>
-    <%= "(#{tag.photos.count})" %>
-   <% end %>
-  <% end %>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card">
+      <%= image_tag @photo.get_image, class: "card-img-top"; %>
+        <div class="card-body">
+          <p class="card-title">タイトル:<%= @photo.title %></p>
+          <p class="card-text">コメント:<%= @photo.body %></p>
+          <p>投稿ユーザー画像:<%= image_tag @photo.user.get_profile_image(100,100), class: "mt-3 rounded-circle"; %></p>
+          <p>ユーザーネーム:<%= @photo.user.name %></p>
+          <p>投稿日:<%= @photo.created_at.strftime('%Y/%m/%d') %></p>
+            <% if @photo.user == current_user %>
+            <%= link_to "削除", photo_path(@photo), method: :delete %>
+      <% end %>
   
   <% if @photo.favorited_by?(current_user) %>
    <p>
@@ -29,6 +25,13 @@
      <% end %>
    </p>
    <% end %>
+</div>
+
+<div>
+ <% @photo_tags.each do |tag| %>
+ <i class="fa-sharp fa-solid fa-tag"></i>
+    <%= link_to tag.tag_name, search_path(tag_id: tag.id) %>
+ <% end %>
 </div>
 
 <div>
@@ -48,4 +51,6 @@
     <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
     <%= f.submit "送信する" %>
   <% end %>
+    </div>
+  </div>
 </div>

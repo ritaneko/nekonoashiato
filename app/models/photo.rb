@@ -29,18 +29,18 @@ class Photo < ApplicationRecord
     .per(per_page)
   end
   
-  def save_tag(sent_tags)
+  def save_tags(tags)
      current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
-     old_tags = current_tags - sent_tags
-     new_tags = sent_tags - current_tags
+     old_tags = current_tags - tags
+     new_tags = tags - current_tags
 
      old_tags.each do |old|
-      self.photo_tags.delete PhotoTag.find_by(tag_name: old)
+      self.tags.delete Tag.find_by(tag_name: old)
      end
 
      new_tags.each do |new|
-       new_photo_tag = PhotoTag.find_or_create_by(tag_name: new)
-      self.photo_tags << new_photo_tag
+      new_photo_tag = Tag.find_or_create_by(tag_name: new)
+      self.tags << new_photo_tag
      end
   end
 end

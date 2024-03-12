@@ -1,25 +1,17 @@
-<h3>タグリスト</h3>
-<% @tag_list.each do |list| %>
-  <%= link_to list.tag_name, tag_photos_path(tag_id: list.id) %>
-  <%= "(#{list.photos.count})" %>
-<% end %>
-<br>
- <%= "#{@tag.tag_name}" %>
-<br>
+<div class="container">
+  <h2><%= @tag.tag_name %>の投稿一覧</h2>
 
-<% @photos.each do |photo| %>
-  <%= link_to photo.body, photo %>
-<% end %>
-
-<%= form_with model: @photo do |f| %>
- <div>
-    <%= f.label"タグ名(スペースで区切ると複数登録できます。)" %>
-    <%= f.text_field :size => 80 %> 
- </div>
- 
- <div>
-   <%= f.label"タグ" %>
-   <%= f.text_field :tag_name, value: @tag_list %>
- </div>
-   <%= f.submit "編集する" %>
-<% end %>
+    <h3>タグリスト</h3>
+     <% @tag_list.each do |tag| %>
+       <%= link_to tag.tag_name, search_path(tag_id: tag.id) %>
+       <%= "(#{tag.photos.count})" %>
+     <% end %>
+     <% @photos.each do |photo| %>
+     <div class="card">
+      <h6 class="card-title">
+        <%= link_to photo_path(photo.id) do %><%= photo.title %>
+        <% end %>
+      </h6>
+    </div>
+    <% end %>
+</div>

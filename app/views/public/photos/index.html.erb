@@ -1,6 +1,14 @@
-<div class="card-list-container py-5">
-<% @photos.each do |photo| %>
-  <div class="card w-50 mx-auto mt-4 shadow-lg">
+<% @tag_list.each do |list| %>
+  <i class="fa-sharp fa-solid fa-tag"></i>
+  <%= link_to list.tag_name, search_path(tag_id: list.id) %>
+  <%= "(#{list.photos.count})" %>
+<% end %>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 shadow-lg">
+  <div class="col">
+    <div class="card w-50 mx-auto mt-4">
+    <% @photos.each do |photo| %>
+  
     <%= link_to photo_path(photo.id) do %>
       <%= image_tag photo.get_image, class: "card-img-top"; %>
     <% end %>
@@ -20,9 +28,8 @@
           <span><%= link_to "#{photo.photo_comments.count} コメント", photo_path(photo.id), class: "text-dark" %></span>
           <p>タグ:#<%= link_to tag.tag_name, photos_path(tag_id: tag.id) %></p>
         </div>
-      </div>
     </div>
   </div>
+</div>
   <% end %>
   <%= paginate @photos %>
-  

@@ -2,9 +2,11 @@
   <div class="row">
     <div>
       <h3>タグを検索</h3>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <%= form_tag({controller:"users",action:"show"}, method: :get) do %>
-         <%= text_field_tag :search %>
-         <%= submit_tag '検索する'  %>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
         <% end %>
         <br>
         <li>
@@ -40,10 +42,9 @@
           <p class="card-text">一言：<%= photo.body %></p>
           <span><i class="fas fa-user"></i> by <%= photo.user.name %> ｜ </span>
           <span><%= link_to "#{photo.photo_comments.count} コメント", photo_path(photo.id), class: "text-dark" %></span>
-          <p>タグ:  #<%= link_to tag.tag_name, photos_path(tag_id: tag.id) %></p>
-          </div>
-            </div>
-          </div>
         </div>
+    </div>
+  </div>
+</div>
         <% end %>
       <%= paginate @photos %>
