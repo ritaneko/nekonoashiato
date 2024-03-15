@@ -19,7 +19,7 @@ scope module: :public do
       end
   end
   resources :boards do
-      resources :posts, only: [:create]
+      resources :posts, only: [:create, :destroy]
   end
 end
 
@@ -28,6 +28,7 @@ devise_for :admin, skip: [:registrations, :password], controllers: {
   }
 namespace :admin do
     get 'dashboards', to: 'dashboards#index'
+    resources :photo_comments, only: [:index, :destroy]
     resources :users, only: [:destroy]
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

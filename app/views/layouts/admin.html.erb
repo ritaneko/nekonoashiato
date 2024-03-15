@@ -10,6 +10,9 @@
 <body>
   <% if admin_signed_in? %>
     <div class="text-right">
+      <%= link_to 'コメント一覧', admin_photo_comments_path %>
+    </div>
+    <div class="text-right">
       <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
     </div>
   <% end %>

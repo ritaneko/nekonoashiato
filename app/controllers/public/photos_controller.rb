@@ -16,7 +16,7 @@ class Public::PhotosController < ApplicationController
       render :new
     end
   end
-  
+
   def index
     @photos = Photo.all.page(params[:page]).per(10)
     @tag_list = Tag.all
@@ -51,7 +51,7 @@ class Public::PhotosController < ApplicationController
         end
        @photo.save_tag(tag_list)
         redirect_to photo_path(@photo.id), notice: '更新完了しました。'
-      else 
+      else
         redirect_to photos_path, notice: '下書きに登録しました。'
       end
     else

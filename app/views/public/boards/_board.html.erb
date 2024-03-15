@@ -6,10 +6,7 @@
         <%= board.title %>
       </a>
     </h4>
-    <div class='mr10 float-right'>
-      <i class="fa-solid fa-pen"></i>
-      <i class="fa-solid fa-trash"></i>
-    </div>
+    <%= render 'crud_menus', board: board if current_user.own?(board) %>
     <ul class="list-inline">
       <li class="list-inline-item">
         <i class="fa-solid fa-user"></i>
@@ -24,5 +21,3 @@
    </div>
   </div>
 </div>
-
-<%= render 'crud_menus', board: board if current_user.own?(board) %>
