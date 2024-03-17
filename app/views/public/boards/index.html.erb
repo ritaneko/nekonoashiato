@@ -3,27 +3,26 @@
     <div class="col-lg-10 offset-lg-1">
       <form>
         <div class="input-group mb-3">
-        <input class="form-control" placeholder="検索ワード" type="search"/>
-        <div class="input-group-append">
+          <input class="form-control" placeholder="検索ワード" type="search"/>
+          <div class="input-group-append">
           <input type="submit" value="検索" class="btn btn-primary"/>
-        </div>
+          </div>
         </div>
       </form>
     </div>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-    <div class="row">
-      <% if @boards.present? %>
-       <%= render @boards %>
-      <% else %>
-       <p><% t('.no_result') %></p>
-      <% end %>
+  
+  <div class="row">
+    <div class="col-12">
+        <% if @boards.present? %>
+         <% @boards.each do |board| %>
+         <%= link_to board.title, board_path(board) %>
+         <% end %>
+        <% else %>
+         <p><%= t('.no_result') %></p>
+        <% end %>
     </div>
   </div>
+
+  <%= link_to t('boards.title'), new_board_path %>
 </div>
-
-<%= link_to t('boards.title'), new_board_path %>
-

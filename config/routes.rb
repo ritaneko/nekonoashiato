@@ -6,7 +6,7 @@ scope module: :public do
   devise_scope :user do
    post 'users/guest_sign_in', to: 'sessions#guest_sign_in'
   end
-  resources :photos, only: [:new, :create, :index, :show, :edit, :destroy] do
+  resources :photos, only: [:new, :create, :index, :show, :destroy] do
    resource :favorites, only: [:create, :destroy]
    resources :photo_comments, only: [:create, :destroy]
    resources :tags, only: [:index, :show]

@@ -21,55 +21,7 @@
       </article>
     </div>
   </div>
-</div>
 
-<div class="row mb-3">
-  <div class="col-lg-8 offset-lg-2">
-    <%= form_with model: @post, url: [board, post], local: true do |f| %>
-      <%= f.label :body %>
-      <%= f.text_area :body, class: 'form-control mb-3', row: 4 %>
-      <%= f.submit, class: 'btn btn-primary' %>
-    <% end %>
-  </div>
+  <%= render 'posts/form', {board: @boards, post: @post } %>
+  <%=render 'posts/posts', { posts: posts } %>
 </div>
-
-<div class="row">
-  <div class="col-lg-8 offset-lg-2">
-    <table id="js-table-post" class="table">
-      <%= render posts %>
-    </table>
-  </div>
-</div>
-
-<tr id="post-<%= post.id %>">
-  <td style="width: 60px">
-  </td>
-  <td>
-    <h3 class="small"><%= post.user_id %></h3>
-    <div id="js-post-<%= post.id %>">
-      <%= simple_format(post.body) %>
-    </div>
-    <div id="js-textarea-post-box-<%= post.id %>" style="display: none;">
-      <textarea id="js-textarea-post-<%= post.id %>" class="form-control md-1"><%= post.body %></textarea>
-      <button class="btn btn-light js-button-edit-post-cancel" data-post-id="<%= post.id %>">キャンセル</button>
-      <button class="btn btn-success js-button-post-update" date-post-id="<%= post.id %>">更新</button>
-    </div>
-  </td>
-  
-  <% if current_user.own?(post) %>
-    <td class="action">
-      <ul class="list-inline justify-content-center" style="float: right;">
-        <li class="list-inline-item">
-          <a href="#" class='js-edit-post-button' data-post-id="<%= post.id %>">
-            <i class="fa-solid fa-pen"></i>
-          </a>
-        </li>
-        <li class="list-inline-item">
-          <a href="#" class='js-edit-post-button' data-post-id="<%= post.id %>">
-            <i class="fa-solid fa-trash"></i>
-          </a>
-        </li>
-      </ul>
-    </td>
-  <% end %>
-</tr>
