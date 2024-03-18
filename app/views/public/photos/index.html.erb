@@ -1,6 +1,8 @@
-<div class="container my-5">
+<% content_for(:title, '一覧ページ') %>
+
+<div class="container">
   <div class="row">
-    <div class="col-mb-"></div>
+    <div class="col-mb-3">
       <% @tag_list.each do |list| %>
        <i class="fa-sharp fa-solid fa-tag"></i>
         <%= link_to list.tag_name, search_path(tag_id: list.id) %>

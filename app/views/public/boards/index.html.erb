@@ -12,17 +12,16 @@
     </div>
   </div>
   
+  <%= link_to "投稿する", new_board_path %>
+  
   <div class="row">
     <div class="col-12">
+      <div class="row">
         <% if @boards.present? %>
-         <% @boards.each do |board| %>
-         <%= link_to board.title, board_path(board) %>
-         <% end %>
+          <%= render @boards %>
         <% else %>
          <p><%= t('.no_result') %></p>
         <% end %>
-    </div>
+      </div>
   </div>
-
-  <%= link_to t('boards.title'), new_board_path %>
 </div>
