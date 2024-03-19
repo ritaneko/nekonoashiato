@@ -18,7 +18,13 @@ class Public::PhotosController < ApplicationController
   end
 
   def index
-    @photos = Photo.all.page(params[:page]).per(10)
+    @q = Photo.ransack(params[:q])
+    if params[:q].present?
+      @photos = @q.result(distinct: true)
+    else
+      @photos = Photo.all
+    end
+    @photos = @photos.page(params[:page]).per(10)
     @tag_list = Tag.all
   end
 

@@ -43,4 +43,12 @@ class Photo < ApplicationRecord
       self.tags << new_photo_tag
      end
   end
+  
+  def self.ransackable_attributes(auth_object = nil)
+    ["body", "created_at", "id", "title", "updated_at", "user_id"]
+  end
+  
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
 end

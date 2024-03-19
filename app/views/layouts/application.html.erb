@@ -26,6 +26,9 @@
               <li class="nav-item">
                <%= link_to 'マイフォト投稿', new_photo_path,class:'nav-link text-dark' %>
               </li>
+              <li>
+                <%= link_to 'フォト一覧', photos_path,class:'nav-link text-dark' %>
+              </li>
               <li class="nav-item">
                <%= link_to 'マイページ', user_path(current_user.id),class:'nav-link text-dark' %>
               </li>
