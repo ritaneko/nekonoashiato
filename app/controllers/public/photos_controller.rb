@@ -1,5 +1,5 @@
 class Public::PhotosController < ApplicationController
-
+  
   def new
     @photo = Photo.new
     @photo.user_id = current_user.id
@@ -9,14 +9,13 @@ class Public::PhotosController < ApplicationController
     @photo = Photo.new(photo_params)
     @photo.user_id = current_user.id
     tag_list = params[:photo][:tag_name].split(',')
-    if @photo.save
-       @photo.save_tags(tag_list)
+    if @photo.save_tags(tag_list)
        redirect_to photos_path(@photo), notice:'投稿完了しました'
     else
       render :new
     end
   end
-
+  
   def index
     @q = Photo.ransack(params[:q])
     if params[:q].present?
@@ -24,8 +23,8 @@ class Public::PhotosController < ApplicationController
     else
       @photos = Photo.all
     end
-      @photos = @photos.page(params[:page]).per(10)
-      @tag_list = Tag.all
+    @photos = @photos.page(params[:page]).per(10)
+    @tag_list = Tag.all
   end
 
   def show

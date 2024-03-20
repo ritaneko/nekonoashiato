@@ -2,18 +2,21 @@
 
 <div class="container">
   <div class="row">
+     <div class="col-10">
       <%= render 'search_photo', q: @q, url: photos_path %>
-      <% @tag_list.each do |tag| %>
+      
+      <% @tag_list.each do |list| %>
         <i class="fa-sharp fa-solid fa-tag">
-          <%= link_to tag.tag_name, search_path(tag_id: tag.id) %>
-          <%= "(#{tag.photos.count})" %>
+          <%= link_to list.tag_name, search_path(tag_id: list.id) %>
+          <%= "(#{list.photos.count})" %>
         </i>
       <% end %>
   </div>
+ </div>
     
          <div class="card-list-container py-5">
            <% @photos.each do |photo| %>
-             <div class="card mx-auto mt-4 bg-dark text-white">
+             <div class="card w-50 mx-auto mt-4 bg-dark text-white">
                <%= link_to photo_path(photo.id) do %>
                  <%= image_tag photo.get_image, class: "card-img-top"; %>
                <% end %>
@@ -31,16 +34,12 @@
                        <p class="card-text">一言：<%= photo.body %></p>
                         <span><i class="fas fa-user"></i> by <%= photo.user.name %> ｜ </span>
                         <span><%= link_to "#{photo.photo_comments.count} コメント", photo_path(photo.id), class: "text-white" %> | </span>
-                              <div>
-                               <i class="fa-sharp fa-solid fa-tag"></i>
-                               <%= link_to tag.tag_name, search_path(tag_id: tag.id) %>
-                               </div>
-                           </div>
-                     </div>
+                      </div>
                    </div>
                  </div>
-              </div>
+             </div>
          
        
                <% end %>
                <%= paginate @photos %>
+</div>
