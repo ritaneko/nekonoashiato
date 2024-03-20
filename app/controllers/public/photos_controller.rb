@@ -24,8 +24,8 @@ class Public::PhotosController < ApplicationController
     else
       @photos = Photo.all
     end
-    @photos = @photos.page(params[:page]).per(10)
-    @tag_list = Tag.all
+      @photos = @photos.page(params[:page]).per(10)
+      @tag_list = Tag.all
   end
 
   def show
@@ -43,19 +43,19 @@ class Public::PhotosController < ApplicationController
   def search
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @photos = @tag.photos
+    @photos = @tag.photos.page(params[@page]).per(10)
   end
 
   def update
     @photo = Photo.find(params[:id])
-    tag_list = params[:photo][:tag_name].split(',')
+    tag = params[:photo][:tag_name].split(',')
     if @photo.update(photo_params)
       if params[:photo][:status] == "公開"
         @old_relations = PhotoTag.where(photo_id: @photo.id)
         @old_relations.each do |relation|
           relation.delete
         end
-       @photo.save_tag(tag_list)
+       @photo.save_tag(tag)
         redirect_to photo_path(@photo.id), notice: '更新完了しました。'
       else
         redirect_to photos_path, notice: '下書きに登録しました。'

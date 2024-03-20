@@ -5,15 +5,22 @@
 
     <h3>タグリスト</h3>
      <% @tag_list.each do |tag| %>
+     <i class="fa-sharp fa-solid fa-tag">
        <%= link_to tag.tag_name, search_path(tag_id: tag.id) %>
        <%= "(#{tag.photos.count})" %>
+     </i>
      <% end %>
      <% @photos.each do |photo| %>
      <div class="card">
-      <h6 class="card-title">
-        <%= link_to photo_path(photo.id) do %><%= photo.title %>
-        <% end %>
-      </h6>
+       <div class="card-body">
+         <h6 class="card-title">
+          <%= link_to photo_path(photo.id) do %><%= photo.title %>
+          <% end %>
+         </h6>
+      </div>
     </div>
     <% end %>
+<div class="pagination pagination-sm justify-content_center">
+  <%= paginate @photos %>
+</div>
 </div>
