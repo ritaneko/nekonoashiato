@@ -1,52 +1,51 @@
 <% content_for(:title, 'マイページ') %>
-      
+
+
 <div class="container">
   <div class="row">
-     <div class="col-5">
-        <li class="text-center">
-          <%= link_to liked_photos_user_path(current_user), data: { "turbolinks" => false } do %>
-           <i class="fas fa-thumbs-up"></i>いいね一覧
+    <div class="col-8">
+      <div class="d-flex justify-content-between">
+        <%= image_tag @user.get_profile_image(100,100),class:"mt-3 rounded-cicle"; %>
+         <h4><i class="fa-solid fa-user"></i> : <%= @user.name %></h4>
+          <% if @user == current_user %>
+            <p><%= link_to "プロフィール編集", edit_user_path(@user), class:'btn btn-primary' %></p>
           <% end %>
-        </li>
-              <table class="table mx-2">
-             　<tbody>
-              　  <tr>
-                  　<td class="card w-50 text-center">
-                     <h4><%= @user.name %></h4>
-                     <%= image_tag @user.get_profile_image(100,100),class:"mt-3 rounded-cicle"; %>
-                      <% if @user == current_user %>
-                      <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-                      <% end %>
-                    </td>
-                 </tr>
-                </tbody>
-               </table>
-          </div>
-        </div>
-
-        <div class="card-container-fluid bg-dark text-white">
-        <% @photos.each do |photo| %>
-           <%= link_to photo_path(photo.id) do %>
-            <%= image_tag photo.get_image, class: "card-img-top"; %>
-           <% end %>
+          <li>
+            <%= link_to liked_photos_user_path(current_user), data: { "turbolinks" => false } do %>
+              <i class="fa-solid fa-thumbs-up"></i> いいね一覧
+            <% end %>
+          </li>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="card-list-container py-5">
+    <% @photos.each do |photo| %>
+      <div class="card w-50 mx-auto mt-4 bg-dark text-white">
+        <%= link_to photo_path(photo.id) do %>
+          <%= image_tag photo.get_image, class: "card-img-top"; %>
+        <% end %>
         <div class="card-body">
           <div class="row">
             <div class="col-2">
               <%= image_tag photo.user.get_profile_image(100,100), class: "mt-3 rounded-circle"; %>
             </div>
-        <div class="col-10">
-          <p class="card-title">
-            <%= link_to(photo_path(photo.id), class: "text-white") do %>
-              <strong><i class="fa-solid fa-paw-simple"></i><span> <%= photo.title %></span></strong>
-            <% end %>
-          </p>
-          <p class="card-text">一言：<%= photo.body %></p>
-          <span><i class="fas fa-user"></i> by <%= photo.user.name %> ｜ </span>
-          <span><%= link_to "#{photo.photo_comments.count} コメント", photo_path(photo.id), class: "text-white" %></span>
+            <div class="col-10">
+              <p class="card-title">
+                <%= link_to(photo_path(photo.id), class: "text-white") do %>
+                  <strong><i class="fa-solid fa-cat"></i><span> <%= photo.title %>
+                    <i class="fa-solid fa-cat"></i></span></strong>
+                <% end %>
+              </p>
+              <p class="card-text"><i class="fa-solid fa-pen"></i> <%= photo.body %></p>
+                <span><i class="fa-solid fa-user"></i> <%= photo.user.name %> ｜ </span>
+                  <span><%= link_to "#{photo.photo_comments.count} コメント", photo_path(photo.id), class: "text-white" %></span>
+            </div>
+          </div>
         </div>
-    </div>
-    </div>
-  
-          <% end %>
-          <%= paginate @photos %>
+            
+    <% end %>
+      <%= paginate @photos %>
+      </div>
   </div>
