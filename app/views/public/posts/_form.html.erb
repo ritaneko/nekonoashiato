@@ -1,0 +1,9 @@
+<div class="row mb-3">
+  <div class="col-lg-8 offset-lg-2">
+    <%= form_with model: post, url: [@board, @post], local: true do |f| %>
+      <%= f.label :body %>
+      <%= f.text_area :body, class: 'form-control mb-3', id: 'js-new-comment-body', row: 4, placeholder: Post.name(:body) %>
+      <%= f.submit t('defaults.board'), class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

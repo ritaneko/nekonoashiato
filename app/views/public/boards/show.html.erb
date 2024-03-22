@@ -1,50 +1,83 @@
 <% content_for(:title, @board.title) %>
 
-<div class="container pt-5">
-  <div class="row md-3">
-    <div class="col-lg-8 offset-lg-2">
-      <h1><%= t('.title') %></h1>
-      
-      <article class="card">
-        <div class="card-body">
-          <div class='row'>
-            <div class='col-md-3'>
-              <%= image_tag 'icon_136700_256.jpg', class:'card-img-top img-fluid', size:'300x200' %>
-            </div>
+<div class="container">
+    <div class="row mb-3 py-3">
+      <div class="col-lg-8 offset-lg-2">
+        <h1><%= t('.title') %></h1>
+        
+        <article class="card">
+          <div class="card-body">
+            <div class='row'>
+              <h3>コメント一覧</h3>
+              <div class='col-md-3'>
+                <%= image_tag 'icon_136700_256.jpg', class: 'card-img-top img-fluid', size: '200x250' %>
+              </div>
               <div class='col-md-9'>
                 <h3 class="d-inline"><%= @board.title %></h3>
-                <%= render 'crud_menus', board: @board if current_user.own?(@board) %>
-                <ul class="list-inline">
-                  <li class="list-inline-item">by <%= @board.user_id %></li>
-                  <li class="list-inline-item"><%= @board.created_at.strftime('%Y/%m/%d') %></li>
-                </ul>
+                  <%= render 'crud_menus', board: @board %>
+                  <ul class="list-inline">
+                    <li class="list-inline-item">by <%= @board.user_id %></li>
+                    <li class="list-inline-item"><%= l @board.created_at, format: :long  %></li>
+                  </ul>
+              </div>
             </div>
+              <p><%= simple_format(@board.body) %></p>
           </div>
-          <p><%= simple_format(@board.body) %></p>
-        </div>
       </article>
     </div>
   </div>
+</div>
   
-    <div class="row mb-3">
-      <div class="col-lg-8 offset-lg-2">
-        <h3>コメント一覧</h3>
         <% @posts.each do |post| %>
-         <div>
-           <%= @post.board_id %>
-           <%= post.body %>
-         </div>
-        <% end %>
+         <table id="js-table-post" class="table">
+         <tr id="post-<%= post.id %>">
+           <td style="width: 60px">
+            <%= image_tag 'icon_136700_256.jpg', class: 'rounded-circle', size: '50x50' %>
+          </td>
+           <td>
+              <h3 class="small"><%= post.board_id %></h3>
+                <div id="js-post-<%= post.id %>">
+                  <%= simple_format(post.body) %>
+                </div>
+                  <div id="js-textarea-post-box-<%= post.id %>" style="display: none;">
+                    <textarea id="js-textarea-post-<%= post.id %>" class="form-control mb-1"><%= post.body %></textarea>
+                      <button class="btn btn-light js-button-edit-post-cancel" data-post-id="<%= post.id %>">キャンセル</button>
+                      <button class="btn btn-success js-button-post-update" data-post-id="<%= post.id %>">更新</button>
+                  </div>
+           </td>
+           <% if current_user.own?(post) %>
+             <td class="action">
+               <ul class="list-inline justify-content-center" style="float: right;">
+                 <li class="list-inline-item">
+                    <a href="#" class='js-edit-post-button' data-post-id="<%= post.id %>">
+                      <i class="fa-solid fa-pen"></i>
+                    </a>
+                 </li>
+                 <li class="list-inline-item">
+                    <a href="#" class='js-delete-post-button' data-post-id="<%= post.id %>">
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                 </li>
+               </ul>
+             </td>
+           </tr>
+           <% end %>
+           </table>
+           <% end %>
       </div>
     </div>
-      
+  </div>
+  
       <div class="row mb-3">
         <div class="col-lg-8 offset-lg-2">
           <%= form_with model: [@board, @post] do |f| %>
-            <%= f.label :body, "コメントする" %>
+            <i class="fa-solid fa-paper-plane"></i><%= f.label :body, "コメントする" %>
             <%= f.text_area :body, class: 'form-control mb-3', row: 5, placeholder: "コメントを入力" %>
             <%= f.submit class: 'btn btn-primary' %>
           <% end %>
-          <%= link_to "掲示板一覧へ", boards_path %>
-    </div>
-  </div>
+          
+            <div class="row py-5">
+              <%= link_to "<掲示板一覧へ>", boards_path %>
+            </div>
+        </div>
+      </div>

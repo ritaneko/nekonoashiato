@@ -1,6 +1,15 @@
 <% content_for(:title, '相談一覧ページ') %>
-  <%= render 'search_form', q: @q, url: boards_path %>
 
+<div class="container">
+  <div class="row py-5">
+    <div class="col-8">
+    <%= render 'search_form', q: @q, url: boards_path %>
+      <div class="text-center">
+        <%= link_to "掲示板に投稿する", new_board_path, class:'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+  
   <div class="row">
     <div class="col-12">
       <div class="row">
@@ -12,6 +21,4 @@
       </div>
     </div>
   </div>
-  <div class="text-center">
-  <%= link_to "投稿する", new_board_path, class:'btn btn-primary' %>
-  </div>
+</div>
