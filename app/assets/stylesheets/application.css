@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+ 
+@font-face {
+  font-family: 'RiiMonakaBLt.off';
+  src: font-url('/assets/RiiMonakaBLt.off.ttf');
+}
+
+body {
+  font-family: 'RiiMonakaBLt.off';
+  color: #AAFFFF;
+}
