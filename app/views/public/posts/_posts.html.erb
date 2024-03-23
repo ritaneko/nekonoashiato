@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-8 offset-lg-2">
     <table id="js-table-post" class="table">
-      <%= render @board %>
+      <%= render posts %>
     </table>
   </div>
 </div>
@@ -15,8 +15,8 @@
     <div id="js-post-<%= post.id %>">
       <%= simple_format(post.body) %>
     </div>
-    <div id="js-textarea-post-box-<%= @post.id %>" style="display: none;">
-      <textarea id="js-textarea-post-<%= @post.id %>" class="form-control mb-1"><%= post.body %></textarea>
+    <div id="js-textarea-post-box-<%= post.id %>" style="display: none;">
+      <textarea id="js-textarea-post-<%= post.id %>" class="form-control mb-1"><%= post.body %></textarea>
       <button class="btn btn-light js-button-edit-post-cancel" data-post-id="<%= post.id %>">キャンセル</button>
       <button class="btn btn-success js-button-post-update" data-post-id="<%= post.id %>">更新</button>
     </div>
