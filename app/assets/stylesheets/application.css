@@ -14,12 +14,12 @@
  *= require_self
  */
  
-@font-face {
-  font-family: 'RiiMonakaBLt.off';
-  src: font-url('/assets/RiiMonakaBLt.off.ttf');
+@font-face{
+  font-family: 'RiiMonakaBLt';
+  src: url('../fonts/riimnkt/RiiMonakaBLt.otf') format("opentype");
 }
 
-body {
-  font-family: 'RiiMonakaBLt.off';
+.h2 {
+  font-family: 'RiiMonakaBLt';
   color: #AAFFFF;
 }

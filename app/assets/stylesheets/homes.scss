@@ -1,14 +1,3 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-h3 {
-  text-align: right;
-  font-family: 'RiiMonakaBLt.off;
-  color: #AAFFFF;
-}
-
-.background {
-  background-image: url("<%= asset_path('SnekoDSC03510_TP_V.jpg') %>");
-  background-size: cover;
-  background-position: center;
-}
