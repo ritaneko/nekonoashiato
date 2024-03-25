@@ -9,7 +9,8 @@ class Public::PhotosController < ApplicationController
     @photo = Photo.new(photo_params)
     @photo.user_id = current_user.id
     tag_list = params[:photo][:tag_name].split(',')
-    if @photo.save_tags(tag_list)
+    if @photo.save
+      @photo.save_tags(tag_list)
        redirect_to photos_path(@photo), notice:'投稿完了しました'
     else
       render :new
@@ -47,14 +48,14 @@ class Public::PhotosController < ApplicationController
 
   def update
     @photo = Photo.find(params[:id])
-    tag = params[:photo][:tag_name].split(',')
+    tag_list = params[:photo][:tag_name].split(',')
     if @photo.update(photo_params)
       if params[:photo][:status] == "公開"
         @old_relations = PhotoTag.where(photo_id: @photo.id)
         @old_relations.each do |relation|
           relation.delete
         end
-       @photo.save_tag(tag)
+       @photo.save_tag(tag_list)
         redirect_to photo_path(@photo.id), notice: '更新完了しました。'
       else
         redirect_to photos_path, notice: '下書きに登録しました。'

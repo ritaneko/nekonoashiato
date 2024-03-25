@@ -10,6 +10,9 @@
 <body>
   <% if admin_signed_in? %>
     <div class="text-right">
+      <%= link_to 'ユーザー一覧', admin_dashboards_path %>
+    </div>
+    <div class="text-right">
       <%= link_to 'コメント一覧', admin_photo_comments_path %>
     </div>
     <div class="text-right">

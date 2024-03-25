@@ -13,6 +13,7 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 import "../stylesheets/top";
+import "../stylesheets/about";
 import "../fonts/riimnkt/RiiMonakaBLt.otf";
 
 Rails.start()

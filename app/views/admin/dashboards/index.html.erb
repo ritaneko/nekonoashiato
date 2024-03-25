@@ -1,13 +1,13 @@
 <div class="container mt-5">
-<h1>全ユーザー一覧</h1>
-  <table>
-  <ul>
-  <% @users.each do |user| %>
-    <li>
-      <%= user.name %> - <%= user.email %>
-      <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' },class: "btn btn-sm btn-danger" %>
-    </li>
-  <% end %>
-  </table>
-  </ul>
+  <h1>全ユーザー一覧</h1>
+    <table class="table mt-3">
+      <ul>
+        <% @users.each do |user| %>
+      <li>
+        <%= user.name %> - <%= user.email %>
+        <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' },class: "btn btn-sm btn-danger" %>
+      </li>
+       <% end %>
+      </ul>
+    </table>
 </div>

@@ -7,6 +7,10 @@ class Public::SessionsController < Devise::SessionsController
     photos_path
   end
   
+  def after_sign_up_path_for(resource)
+    about_path
+  end
+  
   def guest_sign_in
     user = User.guest
     sign_in user
