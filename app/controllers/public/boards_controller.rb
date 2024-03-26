@@ -12,9 +12,9 @@ class Public::BoardsController < ApplicationController
  def create
   @board = current_user.boards.build(board_params)
   if @board.save
-   redirect_to boards_path, success: t('defaults.message.created')
+   redirect_to boards_path, success: t('defaults.message.created', item: Board)
   else
-   flash.now['danger'] = t('defaults.message.not_created')
+   flash.now['danger'] = t('defaults.message.not_created', item: Board)
    render :new
   end
  end

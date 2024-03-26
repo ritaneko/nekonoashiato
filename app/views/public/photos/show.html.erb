@@ -10,18 +10,16 @@
               <div class="col-sm-12 col-md-2">
                 <%= image_tag @photo.user.get_profile_image(100,100), class: "mt-3 rounded-circle" %>
               </div>
-                  
-                    <div class="col-sm-12 col-md-10">
-                      <h4 class="card-title">
-                        <%= link_to(photo_path(@photo.id), class:"text-white") do %><br>
-                          <strong><i class="fa-solid fa-cat"></i><span>タイトル<i class="fa-solid fa-cat"></i>
-                           <%= @photo.title %></span></strong>
-                        <% end %>
-                      </h4>
-                      <p class="card-text">
-                        <i class="fa-solid fa-pen"></i><span> コメント: <%= @photo.body %></span>
-                      </p>
-                      
+                <div class="col-sm-12 col-md-10">
+                  <h4 class="card-title">
+                    <%= link_to(photo_path(@photo.id), class:"text-white") do %><br>
+                      <strong><i class="fa-solid fa-cat"></i><span>タイトル<i class="fa-solid fa-cat"></i>
+                        <%= @photo.title %></span></strong>
+                    <% end %>
+                  </h4>
+                    <p class="card-text">
+                      <i class="fa-solid fa-pen"></i><span> コメント: <%= @photo.body %></span>
+                    </p>
                       <span><i class="fa-solid fa-user"></i>ユーザー:<%= @photo.user.name %> | </span>
                       <span><i class="fa-solid fa-calendar-days"></i><%= @photo.created_at.strftime('%Y/%m/%d') %> | </span>
                   
@@ -41,37 +39,39 @@
                         <% if @photo.user == current_user %>
                           <span> | </span><%= link_to "削除", photo_path(@photo), method: :delete %>
                         <% end %>
-        
                   <div>
                     <% @photo_tags.each do |tag| %>
                       <i class="fa-sharp fa-solid fa-tag"></i>
                       <%= link_to tag.tag_name, search_path(tag_id: tag.id) %>
                     <% end %>
                   </div>
+                </div>
             </div>
           </div>
       </div>
     </div>
-
-        <hr>
-        <div class="comments card-text">
-          <h5 class="mt-3"><%= @photo.photo_comments.count %>件コメント</h5>
-            <% @photo.photo_comments.each do |photo_comment| %>
-              <div class="media border mb-3">
-                <%= image_tag photo_comment.user.get_profile_image(100,100), class: "mt-3 rounded-circle"; %>
-                <div class="media-body ml-4 p-3">
+  </div>
+　
+  <div class="container">
+    <hr>
+      <div class="comments card-text">
+        <h5 class="mt-3"><%= @photo.photo_comments.count %>件コメント</h5>
+          <% @photo.photo_comments.each do |photo_comment| %>
+            <div class="media border mb-3">
+              <%= image_tag photo_comment.user.get_profile_image(100,100), class: "mt-3 rounded-circle"; %>
+              <div class="media-body ml-4 p-3">
                 <%= photo_comment.user.name %> :
                 <%= photo_comment.created_at.strftime('%Y/%m/%d') %>
-                <br>
+              <br>
                 <%= photo_comment.comment %>
                   <% if photo_comment.user == current_user %>
                     <%= link_to "削除", photo_photo_comment_path(photo_comment.photo, photo_comment), method: :delete, class: "btn btn-danger pull-right" %>
                   <% end %>
-                </div>
               </div>
-            <% end %>
-        </div>
-        <hr>
+            </div>
+          <% end %>
+      </div>
+      <hr>
         <div class="new-comment card-text">
           <%= form_with model: [@photo, @photo_comment] do |f| %>
             <div class="form-group">
@@ -83,5 +83,4 @@
         </div>
       </div>
     </div>
-  </div>
 </div>

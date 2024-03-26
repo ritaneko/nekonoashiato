@@ -43,7 +43,7 @@ class Public::PhotosController < ApplicationController
   def search
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @photos = @tag.photos.page(params[@page]).per(10)
+    @photos = @tag.photos.page(params[:page]).per(10)
   end
 
   def update

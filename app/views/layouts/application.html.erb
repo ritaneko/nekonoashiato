@@ -25,29 +25,29 @@
             <ul class="navbar-nav ml-auto">
              <% if user_signed_in? %>
               <li class="nav-item">
-                <%= link_to 'マイフォト投稿', new_photo_path,class:'nav-link text-dark' %>
+                <i class="fa-solid fa-camera-retro"><%= link_to 'マイフォト投稿', new_photo_path,class:'nav-link text-blue' %></i>
               </li>
               <li class="nav-item">
-                <%= link_to 'フォト一覧', photos_path,class:'nav-link text-dark' %>
+                <i class="fa-solid fa-book-quran"><%= link_to 'フォト一覧', photos_path,class:'nav-link text-blue' %></i>
               </li>
               <li class="nav-item">
-               <%= link_to 'マイページ', user_path(current_user.id),class:'nav-link text-dark' %>
+               <i class="fa-solid fa-paw"><%= link_to 'マイページ', user_path(current_user.id),class:'nav-link text-blue' %></i>
               </li>
               <Li class="nav-item">
-               <%= link_to '掲示板', boards_path,class:'nav-link text-dark' %>
+                <i class="fa-solid fa-pen-to-square"><%= link_to '掲示板', boards_path,class:'nav-link text-blue' %></i>
               </Li>
               <li class="nav-item">
-               <%= link_to "ログアウト", destroy_user_session_path, method: :delete,class:'nav-link text-dark' %>
+               <i class="fa-solid fa-share-from-square"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class:'nav-link text-blue' %></i>
               </li>
               <% else %>
               <li class="nav-item">
-               <%= link_to "新規登録", new_user_registration_path,class:'nav-link text-dark' %>
+                <i class="fa-regular fa-heart"><%= link_to "新規登録", new_user_registration_path,class:'nav-link text-blue' %></i>
               </li>
               <li class="nav-item">
-               <%= link_to "ログイン", new_user_session_path,class:'nav-link text-dark' %>
+                <i class="fa-regular fa-star"><%= link_to "ログイン", new_user_session_path,class:'nav-link text-blue' %></i>
               </li>
               <li class="nav-item">
-               <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post,class:'nav-link text-dark' %>
+                <i class="fa-solid fa-right-to-bracket"><%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post,class:'nav-link text-blue' %></i>
               </li>
              <% end %>
             </ul>
