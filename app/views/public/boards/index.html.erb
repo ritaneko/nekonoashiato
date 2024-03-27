@@ -1,6 +1,7 @@
 <% content_for(:title, '相談一覧ページ') %>
 
 <div class="container">
+  <%= flash[:notice] %>
   <div class="row py-5">
     <div class="col-8">
     <%= render 'search_form', q: @q, url: boards_path %>

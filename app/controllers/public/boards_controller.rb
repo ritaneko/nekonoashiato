@@ -12,9 +12,9 @@ class Public::BoardsController < ApplicationController
  def create
   @board = current_user.boards.build(board_params)
   if @board.save
-   redirect_to boards_path, success: t('defaults.message.created', item: Board)
+   redirect_to boards_path, flash:{ notice:"投稿完了しました。" }
   else
-   flash.now['danger'] = t('defaults.message.not_created', item: Board)
+   flash.now[:notice] = "投稿に失敗しました。"
    render :new
   end
  end

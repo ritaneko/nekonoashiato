@@ -27,30 +27,31 @@
                         <span>
                           <%= link_to photo_favorites_path(@photo), class:"text-white", method: :delete do %>
                             <i class="fa-solid fa-heart"></i> <%= @photo.favorites.count %>
-                      <% end %>
+                          <% end %>
                         </span>
                       <% else %>
                         <span>
                           <%= link_to photo_favorites_path(@photo), method: :post do %>
                             ♡<%= @photo.favorites.count %> いいね
-                      <% end %>
+                          <% end %>
                         </span>
                       <% end %>
                         <% if @photo.user == current_user %>
                           <span> | </span><%= link_to "削除", photo_path(@photo), method: :delete %>
                         <% end %>
-                  <div>
-                    <% @photo_tags.each do |tag| %>
-                      <i class="fa-sharp fa-solid fa-tag"></i>
-                      <%= link_to tag.tag_name, search_path(tag_id: tag.id) %>
-                    <% end %>
-                  </div>
+                      <div>
+                        <% @photo_tags.each do |tag| %>
+                          <i class="fa-sharp fa-solid fa-tag"></i>
+                        <%= link_to tag.tag_name, search_path(tag_id: tag.id) %>
+                        <% end %>
+                      </div>
                 </div>
             </div>
           </div>
       </div>
     </div>
   </div>
+</div>
 　
   <div class="container">
     <hr>
@@ -62,7 +63,7 @@
               <div class="media-body ml-4 p-3">
                 <%= photo_comment.user.name %> :
                 <%= photo_comment.created_at.strftime('%Y/%m/%d') %>
-              <br>
+                <br>
                 <%= photo_comment.comment %>
                   <% if photo_comment.user == current_user %>
                     <%= link_to "削除", photo_photo_comment_path(photo_comment.photo, photo_comment), method: :delete, class: "btn btn-danger pull-right" %>
@@ -76,11 +77,9 @@
           <%= form_with model: [@photo, @photo_comment] do |f| %>
             <div class="form-group">
               <label for="exampleFormControlTextarea1">コメントする</label>
-            <%= f.text_area :comment, rows: '5', class: "form-control",placeholder: "コメントをここに" %>
+                <%= f.text_area :comment, rows: '5', class: "form-control",placeholder: "コメントをここに" %>
             </div>
-            <%= f.submit "送信する", class:"btn btn-lg btn-info mt-2 float-right" %>
+              <%= f.submit "送信する", class:"btn btn-lg btn-info mt-2 float-right" %>
           <% end %>
         </div>
-      </div>
-    </div>
-</div>
+  </div>

@@ -1,9 +1,10 @@
 <% content_for(:title, 'フォト投稿') %>
 
 <div class="container">
+  <%= flash[:notice] %>
   <div class="row no-gutters">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
-      <h5 class="text-dark bg-light p-4 mb-0">画像投稿</h5>
+      <h5 class="text-dark bg-light p-4 mb-0"><i class="fa-solid fa-camera-retro">フォト投稿</h5></i>
         <div class="form-body p-4">
           <% if @photo.errors.any? %>
             <ul class="alert alert-danger" role="alert">
@@ -21,12 +22,12 @@
               <%= f.file_field :image, accept: "image/*", class: "w-100" %>
                 <div class="input-group mb-3 mt-4">
                   <div class="input-group-prepend">
-                    <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+                    <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-comment-dots"></i></span>
                   </div>
                   <%= f.text_area :body, class: "form-control", rows: "3", placeholder: "一言" %>
                 </div>
                 <div>
-                  <label>タグ(,で区切ると複数タグ登録できます）</label>
+                  <label><i class="fa-sharp fa-solid fa-tag">タグ(,で区切ると複数タグ登録できます）</i></label>
                     <%= f.text_field :tag_name, value: @tag_list, class: 'form-control' %>
                 </div>
                 <hr>

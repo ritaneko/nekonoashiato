@@ -1,10 +1,23 @@
 <% content_for(:title, '掲示板投稿') %>
 
 <div class="container">
+  <%= flash[:notice] %>
   <div class="row no-gutters">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
-      <h2><%= t('.Title') %></h2>
-      <%= render 'form', { board: @board } %>
+      <h5 class="text-dark bg-light p-4 mb-0">掲示板投稿</h5>
+        <div class="form-body p-4">
+          <% if @board.errors.any? %>
+            <ul class="alert alert-danger" role="alert">
+              <h6 class="alert-heading">
+                <%= @board.errors.count %>件のエラーが発生しました
+              </h6>
+                <% @board.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+           </ul>
+          <% end %>
+        <%= render 'form', { board: @board } %>
+        </div>
     </div>
   </div>
 </div>

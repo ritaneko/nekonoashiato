@@ -1,6 +1,7 @@
 <% content_for(:title, '一覧ページ') %>
 
 <div class="container">
+ <%= flash[:notice] %>
   <div class="row">
      <div class="col-10">
        <%= render 'search_photo', q: @q, url: photos_path %>
