@@ -2,15 +2,15 @@
 
 <div class="container">
   <%= flash[:notice] %>
-  <div class="row py-5">
-    <div class="col-8">
+  <div class="row py-3">
+    <div class="col-8 mx-auto">
     <%= render 'search_form', q: @q, url: boards_path %>
       <div class="text-center">
         <%= link_to "掲示板に投稿する", new_board_path, class:'btn btn-primary' %>
       </div>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-12">
       <div class="row">
