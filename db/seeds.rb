@@ -29,7 +29,7 @@ Photo.find_or_create_by!(title: "カメラ目線") do |photo|
   photo.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/zeke-tucker-gSSK4u8yPpM-unsplash.jpg"), filename:"zeke-tucker-gSSK4u8yPpM-unsplash.jpg")
   photo.body = "カメラ目線でゴロン"
   photo.user = rita
-  
+
 end
 
 Photo.find_or_create_by!(title: "窓辺でお昼寝") do |photo|
@@ -42,6 +42,14 @@ Photo.find_or_create_by!(title: "お気に入り") do |photo|
   photo.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/TOMS526533_TP_V4.jpg"), filename:"TOMS526533_TP_V4.jpg")
   photo.body = "いいもの見つけた！"
   photo.user = miko
+end
+
+Tag.find_or_create_by!(tag_name: 'かわいい')
+Tag.find_or_create_by!(tag_name: '不思議')
+
+Board.find_or_create_by!(title: "お気に入りの猫") do |board|
+  board.body = "みんなのお気に入りの猫を教えて！"
+  board.user = rita
 end
 
 puts "seedの実行が完了しました"
