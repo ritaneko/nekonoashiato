@@ -29,7 +29,6 @@ Photo.find_or_create_by!(title: "カメラ目線") do |photo|
   photo.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/zeke-tucker-gSSK4u8yPpM-unsplash.jpg"), filename:"zeke-tucker-gSSK4u8yPpM-unsplash.jpg")
   photo.body = "カメラ目線でゴロン"
   photo.user = rita
-
 end
 
 Photo.find_or_create_by!(title: "窓辺でお昼寝") do |photo|
