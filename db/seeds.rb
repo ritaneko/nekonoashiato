@@ -51,4 +51,8 @@ Board.find_or_create_by!(title: "お気に入りの猫") do |board|
   board.user = rita
 end
 
+Admin.find_or_create_by!(email: "neko@example.com") do |admin|
+  admin.password = "123456"
+end
+
 puts "seedの実行が完了しました"
