@@ -12,7 +12,7 @@ class Public::BoardsController < ApplicationController
  def create
   @board = current_user.boards.build(board_params)
   if @board.save
-   redirect_to boards_path, flash:{ notice:"投稿完了しました。" }
+   redirect_to boards_path, flash:{ notice:"投稿完了しました。"}
   else
    flash.now[:notice] = "投稿に失敗しました。"
    render :new

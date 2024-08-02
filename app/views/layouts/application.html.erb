@@ -37,6 +37,9 @@
                 <i class="fa-solid fa-pen-to-square"><%= link_to '掲示板', boards_path,class:'nav-link text-blue' %></i>
               </Li>
               <li class="nav-item">
+                <i class="fas fa-link"><%= link_to 'about', about_path, class:'nav-link text-blue' %></i>
+              </li>
+              <li class="nav-item">
                <i class="fa-solid fa-share-from-square"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class:'nav-link text-blue' %></i>
               </li>
               <% else %>
@@ -65,10 +68,10 @@
             <p>猫好きのためのコミュニティサイト</p>
           </div>
           <div class="col-md-8">
-            <h6 class="text-white mt-2 mb-3">Link</h6>
+            <h6 class="text-white mt-2 mb-3"></h6>
             <ul class="p-0 list-unstyled">
               <li>
-                <a href="" title="About" class="text-white-50">サイト概要</a>
+                <a href="" title="About" class="text-white-50"></a>
               </li>
               <li>
               </li>
