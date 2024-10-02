@@ -23,7 +23,7 @@
 * 猫に関する情報を共有したい時
 
 ## 設計書
-後ほど作成予定
+https://drive.google.com/file/d/1IFLdNmUAeSdheoQltt5V5_ML96AaPZPP/view?usp=sharing
 
 ## 実装機能リストURL
 https://docs.google.com/spreadsheets/d/1YunmVU4wv8p5zzbs_PliGADdxcBFVGhwDyHJFAybbxU/edit?usp=sharing
