@@ -37,3 +37,7 @@ https://docs.google.com/spreadsheets/d/1YunmVU4wv8p5zzbs_PliGADdxcBFVGhwDyHJFAyb
 
 
 ## 使用素材
+* 写真素材 : ぱくたそ, O-DAN
+* フォント素材 : Font Free
+* アイコン素材 : ICOOON MONO
+* ロゴ素材 : designe
